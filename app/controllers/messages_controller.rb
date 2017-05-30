@@ -1,11 +1,14 @@
 class MessagesController < ApplicationController
+  before_action :set_message, only: [:show, :edit, :update, :destory]
+
   def index
    @messages = Message.all
   # render :index が省略されている
   end
 
   def show
-    @message = Message.find(params[:id])
+#    @message = Message.find(params[:id])
+#    set_message
   end
 
   def new
@@ -28,11 +31,13 @@ class MessagesController < ApplicationController
 
 
   def edit
-    @message = Message.find(params[:id])
+#    @message = Message.find(params[:id])
+#    set_message
   end
 
   def update
-    @message = Message.find(params[:id])
+#    @message = Message.find(params[:id])
+#    set_message
 
     if @message.update(message_params)
       flash[:success] = 'Message は正常に更新されました'
@@ -44,7 +49,9 @@ class MessagesController < ApplicationController
   end
 
   def destroy
-    @message = Message.find(params[:id])
+#    @message = Message.find(params[:id])
+#    set_message
+
     @message.destroy
 
     flash[:success] = 'Message は正常に削除されました'
@@ -56,6 +63,10 @@ class MessagesController < ApplicationController
   # Strong Parameter
   def message_params
     params.require(:message).permit(:content)
+  end
+
+  def set_message
+    @message = Message.find(params[:id])
   end
 
 end
