@@ -2,7 +2,7 @@ class MessagesController < ApplicationController
   before_action :set_message, only: [:show, :edit, :update, :destroy]
 
   def index
-   @messages = Message.all
+   @messages = Message.order(created_at: :desc).page(params[:page]).per(10)
   # render :index が省略されている
   end
 
@@ -38,7 +38,7 @@ class MessagesController < ApplicationController
   def update
 #    @message = Message.find(params[:id])
 #    set_message
-
+    binding.pry
     if @message.update(message_params)
       flash[:success] = 'Message は正常に更新されました'
       redirect_to @message
