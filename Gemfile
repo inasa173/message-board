@@ -57,3 +57,8 @@ gem "kaminari"
 
 #byebug tool
 gem "pry-byebug", group: :development
+
+#Heroku
+group :production do
+  gem "pg"
+end
