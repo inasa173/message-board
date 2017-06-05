@@ -66,7 +66,10 @@ class MessagesController < ApplicationController
   end
 
   def set_message
-    @message = Message.find(params[:id])
-  end
+    @message = Message.find_by(id: params[:id])
+    #redirect_to root_url if @message.nil?
+#    render :error_404 if @message.nil?
+  end 
+
 
 end
