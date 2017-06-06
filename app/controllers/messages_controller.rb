@@ -20,10 +20,10 @@ class MessagesController < ApplicationController
     @message = Message.new(message_params)
 
     if @message.save
-      flash[:success] = "Message が正常に投稿されました"
+      flash[:success] = 'Message が正常に投稿されました'
       redirect_to @message
     else
-      flash.now[:danger] = "Message の投稿に失敗しました"
+      flash.now[:danger] = 'Message の投稿に失敗しました'
       render :new
     end
 
@@ -38,7 +38,7 @@ class MessagesController < ApplicationController
   def update
 #    @message = Message.find(params[:id])
 #    set_message
-    binding.pry
+   # binding.pry
     if @message.update(message_params)
       flash[:success] = 'Message は正常に更新されました'
       redirect_to @message
@@ -68,8 +68,6 @@ class MessagesController < ApplicationController
   def set_message
     @message = Message.find_by(id: params[:id])
     #redirect_to root_url if @message.nil?
-#    render :error_404 if @message.nil?
+    render_404 if @message.nil?
   end 
-
-
 end

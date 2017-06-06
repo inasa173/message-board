@@ -23,7 +23,6 @@ Rails.application.routes.draw do
   #上記の省略形
   resources :messages
 
-  get "*not_found" => "application#routing_error"
-  post "*not_found" => "application#routing_error"
+  get '*path', controller: 'application', action: 'render_404'
 
 end
